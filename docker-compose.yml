@@ -11,7 +11,14 @@ services:
       - "./:/src/app"
     ports:
       - "3000:3000"
-    command: bash -c "cd /src/app && npm start"
+    command: bash -c "cd /src/app/app1 && npm start"
+  app2:
+    image: node:8.11
+    volumes:
+      - "./:/src/app"
+    ports:
+      - "4000:3000"
+    command: bash -c "cd /src/app/app2 && npm start"
   mysql:
       image: mysql:5.7
       volumes:

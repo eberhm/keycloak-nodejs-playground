@@ -1,34 +1,36 @@
-#Basic NodeJS Example
+# Basic Keycloak example with two different applications
 
+## Requirements:
 
-##Start and configure Keycloak
-
-###Start Keycloak:
-
-####Docker
-Using the image from https://hub.docker.com/r/jboss/keycloak/
-```
-docker run -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin jboss/keycloak
-```
-####Standard
-```
-/<Path-To-Keycloak>/bin/standalone.sh
-```
-
-Open the Keycloak admin console, click on Add Realm, click on import 'Select file', 
-select nodejs-example-realm.json and click Create.
-
-Link the HEAD code of keycloak-connect by running:
+* docker and docker-compose
+* node >= 8 + npm
+* add to /etc/hosts the following lines:
 
 ```
-npm link ../
+127.0.0.1 app1 app2 keycloak 
 ```
+
+Open the browser at http://keycloak:8080/ and login with username: 'admin', and password: 'admin'.
+
+Open the Keycloak admin console, click on Add Realm, click on import 'Select file', select nodejs-example-realm.json and click Create.
+
+## Basic setup
 
 Install the dependencies and start NodeJS example by running:
 
 ```
-npm install
-npm start
+$ cd app1 && npm install
+$ cd app2 && npm install
 ```
 
-Open the browser at http://localhost:3000/ and login with username: 'user', and password: 'password'.
+Open the browser at http://app1:3000/
+Open the browser at http://app2:4000/
+
+
+## Running the playground
+
+$ docker-compose up
+
+
+
+
