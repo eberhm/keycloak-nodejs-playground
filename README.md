@@ -29,8 +29,9 @@ Open the browser at http://app2:4000/
 
 ## Running the playground
 
+```
 $ docker-compose up
-
+```
 
 
 

@@ -50,7 +50,6 @@
             "clientId": "nodejs-connect-1",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "/",
             "adminUrl" : "http://app1:3000/",
             "baseUrl" : "http://app1:3000/",
             "redirectUris": [
@@ -62,7 +61,6 @@
             "clientId": "nodejs-connect-2",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "/",
             "adminUrl" : "http://app2:3000/",
             "baseUrl" : "http://app2:3000/",
             "redirectUris": [
