@@ -4,7 +4,7 @@
   "description": "Example page that demonstrates available keycloak functionality",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --inspect=0.0.0.0:9229 index.js"
   },
   "author": "Roman Jurkov <winfinit@gmail.com>",
   "license": "Apache-2.0",
@@ -12,6 +12,7 @@
     "express": "*",
     "express-session": "*",
     "hogan-express": "*",
+    "jwt-decode": "^2.2.0",
     "keycloak-connect": "^4.0.0-beta.3"
   }
 }

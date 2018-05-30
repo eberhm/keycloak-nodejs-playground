@@ -14,16 +14,17 @@
  * the License.
  */
 
-var Keycloak = require('keycloak-connect');
-var hogan = require('hogan-express');
-var express = require('express');
-var session = require('express-session');
+const Keycloak = require('keycloak-connect');
+const hogan = require('hogan-express');
+const express = require('express');
+const session = require('express-session');
+const jwt_decode = require('jwt-decode');
 
-var app = express();
+const app = express();
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+const server = app.listen(3000, function () {
+  const host = server.address().address;
+  const port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
@@ -41,7 +42,7 @@ app.get('/', function (req, res) {
 // Create a session-store to be used by both the express-session
 // middleware and the keycloak middleware.
 
-var memoryStore = new session.MemoryStore();
+const memoryStore = new session.MemoryStore();
 
 app.use(session({
   secret: 'mySecret',
@@ -56,7 +57,7 @@ app.use(session({
 // Additional configuration is read from keycloak.json file
 // installed from the Keycloak web console.
 
-var keycloak = new Keycloak({
+const keycloak = new Keycloak({
   store: memoryStore
 });
 
@@ -82,7 +83,8 @@ app.get('/login', keycloak.protect(), function (req, res) {
 });
 
 app.get('/resource', keycloak.protect(), function (req, res) {
-  res.render('resource', {
-    user: {name: 'eber'}
-  });
+  const result = JSON.parse(req.session['keycloak-token']);
+  const user = jwt_decode(result.access_token);
+
+  res.render('resource', { user });
 });
